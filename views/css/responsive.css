@@ -1,0 +1,9 @@
+@media screen and (max-width: 450px){
+    .form-main{
+        width: 300px;
+    }
+    .btn-submit{
+        width: 100px;
+        
+    }
+}
