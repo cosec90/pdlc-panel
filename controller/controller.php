@@ -105,5 +105,32 @@ function LOGIN($user,$pwd,$cour,$depart){
   }
 
  }
+ function ADD_NEWS($tit,$msg){
+  include '../config/connection.php';
+   $date =date('y-m-d');
+   $course_name = $_SESSION['adminCourse'];
+
+  $sql = "INSERT into news_tb values(not null,'$course_name','$msg','$tit','$date')";
+  $result = mysqli_query($con,$sql);
+
+  header("Location: ../views/index.php");
+
+ }
+ function UPDATE_NEWS($key,$tit,$msg){
+  include '../config/connection.php';
+  $date =date('y-m-d');
+
+  $sql = "UPDATE news_tb set nw_msg='$msg',nw_title='$tit',nw_date='$date' where nw_id='$key'";
+  $result = mysqli_query($con,$sql);
+  unset($_SESSION['course_id']);
+  header("Location: ../views/index.php");
+ }
+ function DELETE_NEWS($key){
+  include '../config/connection.php';
+
+  $sql = "DELETE from news_tb where nw_id='$key'";
+  $result = mysqli_query($con,$sql);
+  header("Location: ../views/index.php");
+ }
 
 ?>

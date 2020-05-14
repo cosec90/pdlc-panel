@@ -25,6 +25,12 @@
                     </div>
                 </li>
                 <li class="hover-style">
+                    <i class="fas fa-file-alt icon"></i>
+                    <div class="align-cont">
+                        <a href="add_news.php" class="item-inner">Add News</a>
+                    </div>
+                </li>
+                <li class="hover-style">
                     <i class="fas fa-sign-out-alt icon"></i>
                     <div class="align-cont">
                         <a href="../module/logout.php" class="item-inner">Logout</a>

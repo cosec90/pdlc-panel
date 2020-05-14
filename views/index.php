@@ -125,6 +125,74 @@
                     ?>
                   </table>
             </div>
+            <div class="info-table-main">        
+                <h3 class="table-header">News</h3>
+                <table class="main-table"> 
+                    <tr>
+                      <th>News Title</th>
+                      <th>Date</th>
+                      <th>Message</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      
+                    </tr>
+                    <?php
+                    $course_info =  $_SESSION['adminCourse'];
+                    $query = "SELECT * from news_tb where ad_course ='$course_info'";
+                    $result = mysqli_query($con,$query);
+                    $count = mysqli_num_rows($result);
+
+                    if($count > 0){
+                        while($count != 0 ){
+                            $row = mysqli_fetch_assoc($result);
+                            $title = $row['nw_title'];
+                            $date = $row['nw_date'];
+                            $msg = $row['nw_msg'];      
+                            $id =  $row['nw_id'];
+                            $_SESSION['course_id'] = $id;              
+                    
+                    ?>
+
+                    <tr>
+                       
+                        <td>
+                            <?php echo $title; ?>
+                        </td>
+                        <td>
+                        <?php echo $date; ?>
+                        </td>
+                        <td>
+                        <?php echo $msg; ?>
+                        </td>
+                        <td>
+                    
+                            <form action="../module/edit_news.php" method="POST">
+                                <input type="hidden" value="<?php echo $id; ?>" name="id">
+                                <button class="btn btn-primary" type="submit" name="btnedit">Edit</button>
+                            </form>
+                           <!-- <a href="edit_news_view.php"> <button class="btn btn-primary" type="submit" name="btnedit">Edit</button></a> -->
+                    
+                        </td>
+                        <td>
+                            <form action="../module/edit_news.php" method="POST">
+                                <input type="hidden" value="<?php echo $id; ?>" name="id">
+                                <button class="btn btn-danger" type="submit" name="btnDelete">Delete</button>
+                            </form>
+                            
+                            </td>
+                    </tr>
+                    <?php
+                           $count--; }
+                          
+                        }
+                        else{
+
+                            echo "No records to show";
+                        }
+                    ?>
+                  </table>
+            </div>
             
         </div>
         </div> <!-- Main container closing -->
